@@ -1,0 +1,48 @@
+﻿@model RelatorioModel
+    @if (@User.IsInRole("ADMIN"))
+    { 
+        <a class="btn botao pull-right" style="margin-bottom:50px" href="~/Jogo/ManterJogo">Criar Jogo</a>
+    }
+
+<h2 class="text-success">@TempData["Mensagem"]</h2>
+@if (Model.QuantidadeDeJogos != 0)
+{
+    <h2 style="color:#389f02">Jogos disponíveis para locação</h2>
+    <table class="table table-bordered White">
+        <thead>
+            <tr style="background-color:black;" class="linha white">
+                <th style="width: 25%">Jogo</th>
+                <th style="width: 15%">Categoria</th>
+                <th style="width: 4%">Detalhes</th>
+                @if (@User.IsInRole("ADMIN"))
+                {
+                    <th style="width: 4%">Edição</th>
+                }
+                <th style="width: 4%">Locar</th>
+            </tr>
+        </thead>
+
+        @foreach (var jogo in Model.JogosDisponiveis)
+        {
+            <tr class="linha text-info">
+                <td>@jogo.Nome</td>
+                <td>@jogo.Categoria</td>
+                <td class="text-center"><a class="btn botao" href='~/Jogo/Detalhes/@jogo.Id'>Detalhes</a></td>
+                @if (@User.IsInRole("ADMIN"))
+                {
+                    <td class="text-center"><a class="btn botao" href='~/Jogo/ManterJogo/@jogo.Id'>Editar</a></td>
+                }
+
+                <td class="text-center"><a class="btn botao" href='~/Locacao/Locar/@jogo.Id'>Locar</a></td>
+            </tr>
+        }
+
+    </table>
+    <div class="text-center text-info">
+        <h4>Quantidade de jogos: @Model.QuantidadeDeJogos</h4>
+    </div>
+}
+else
+{
+    <h2 class="White">Não há jogos disponiveis</h2>
+}

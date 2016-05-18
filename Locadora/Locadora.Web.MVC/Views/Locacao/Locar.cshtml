@@ -1,0 +1,22 @@
+﻿@model TelaLocacaoModel
+@{
+    ViewBag.Title = "Locar";
+}
+
+<h2 class="yGreen">Locar</h2>
+
+@Html.Partial("_Locar", @Model)
+<form class="form-group" style="margin-top:350px;" action='@Url.Action("Salvar","Locacao")'>
+    @Html.HiddenFor(m => m.Id)
+    <input class="form-control" placeholder= "Selecionar Cliente" type="text" name="clienteNome" id="input" />
+    <input style="margin-top:20px;" type="submit" value="Salvar" class="btn btn-info" id="save" />
+</form>
+@section Scripts {
+    <script>
+        $("document").ready(function () {
+            $("#input").autocomplete({
+                source: '@Url.Action("ClienteAutocomplete", "Locacao")'
+            });
+        });
+    </script>
+}

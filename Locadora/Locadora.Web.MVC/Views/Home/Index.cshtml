@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Página Inicial";
+}
+
+<h2 class="yGreen text-center">Locadora</h2>
+<div style="text-align:center">
+    <img src="~/Content/Images/Dota2.jpg" />
+    <h5>
+        <a href="/Relatorio/JogosDisponiveis" class="botao btn">Jogos Disponíveis</a>
+    </h5>
+    <form class="form-group" action='@Url.Action("JogosDisponiveis","Relatorio")'>
+        <input placeholder="pesquisar um jogo" type="text" name="nome" id="nome" />
+        <input type="submit" value="Pesquisar" class="btn" id="Pesquisar" />
+    </form>
+@section Scripts {
+    <script>
+        $("document").ready(function () {
+            $("#nome").autocomplete({
+                source: '@Url.Action("JogosAutocomplete", "Relatorio")',
+                select: function () { $("#Pesquisar").click(); }
+            });
+        });
+    </script>
+}
+</div>

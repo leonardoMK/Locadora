@@ -1,0 +1,59 @@
+﻿@model RelatorioModel
+@{
+    ViewBag.Title = "JogosLocados";
+}
+@if (TempData["DataEntrega"] != null)
+{
+    <button id="opener" class="btn btn-info top-ajuste">Detalhes da Devolucao</button>
+    <div id="dialog" title="Devolucao">
+        <h4 class="text-success ">Cliente: @TempData["Cliente"]</h4>
+        <h4 class="text-success ">Valor: @TempData["Valor"]</h4>
+        <h4 class="text-success ">Data de entrega: @TempData["DataEntrega"]</h4>
+    </div>
+
+}
+
+
+<h3 class="text-success">@TempData["Mensagem"]</h3>
+
+@if (Model.QuantidadeDeJogos != 0)
+{
+    <h2 class="yGreen">JogosLocados</h2>
+    <table class="table table-bordered White">
+        <thead>
+            <tr style="background-color:black;" class="linha white">
+                <th style="width: 25%">Jogo</th>
+                <th style="width: 15%">Categoria</th>
+                <th style="width: 15%">Cliente</th>
+                <th style="width: 10%">Devolução</th>
+            </tr>
+        </thead>
+
+        @foreach (var jogo in Model.JogosLocados)
+        {
+            <tr class="linha text-info">
+                <td>@jogo.Nome</td>
+                <td>@jogo.Categoria</td>
+                <td>@jogo.NomeCliente</td>
+                <td class="text-center"><a class="btn botao" href='~/Locacao/DevolverJogo/@jogo.Id'>Devolver Jogo</a></td>
+            </tr>
+        }
+
+    </table>
+    <div class="text-center text-info">
+        <h4>Quantidade de jogos locados: @Model.QuantidadeDeJogos</h4>
+    </div>
+}
+else
+{
+    <h2 class="White">Não há jogos Locados</h2>
+}
+@section Scripts {
+    <script>
+        $( "#dialog" ).dialog({ autoOpen: false });
+        $( "#opener" ).click(function() {
+            $("#dialog").dialog("open");
+        });
+
+    </script>
+}

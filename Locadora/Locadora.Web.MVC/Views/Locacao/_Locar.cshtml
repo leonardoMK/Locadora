@@ -1,0 +1,29 @@
+﻿@model TelaLocacaoModel
+    <title>Locacao</title>
+<div>
+    <h1 class="yGreen text-center" text-align:center">Locacao</h1>
+    <div class="col-sm-5 top-ajuste" style="position:relative">
+        <img style="display:inline-block;float:left; width:300px; height:250px;" src="@Model.Imagem" />
+        <div style="position:absolute;">
+            @if (Model.Selo.ToString() == "Bronze")
+            {
+                <img style="width:70px;height:70px; margin-top:180px;" src="http://3.bp.blogspot.com/-D15liwu08Gg/UPMhgF4SchI/AAAAAAAAAVc/Zmg4eEXQl1U/s320/Medalha+de+Bronze.png" />
+            }
+            else if (Model.Selo.ToString() == "Prata")
+            {
+               <img style="width:70px;height:70px; margin-top:180px;" src="http://3.bp.blogspot.com/-RDieK7xn0ro/UPMgzFDQ3RI/AAAAAAAAAVA/NGJcbLdqmpI/s1600/Medalha+de+prata.png" />
+            }
+            else
+            {
+                <img style="width:70px;height:70px; margin-top:180px;" src="http://www.akimneto.com.br/blog/wp-content/uploads/2015/08/Medalha-de-Ouro.png" />
+
+            }
+        </div>
+    </div>
+        
+    <div class="top-ajuste" style="display:inline-block; float:left">
+        <h3 style="text-align:center; margin-top:10px;">@Model.NomeJogo</h3>
+        <h4 class="top-ajuste">Data prevista para entrega: @Model.DataPrevista</h4>
+        <h4>Valor: @Model.ValorDaLocacao</h4>
+    </div>
+</div>

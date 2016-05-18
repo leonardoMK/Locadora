@@ -1,0 +1,25 @@
+﻿
+@model JogoDetalhesModel
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<div>
+    <h1 class="blue">Detalhes</h1>
+    <div class="pull-right">
+        <p class="text-info">Video do Jogo</p>
+        <iframe class="" width="420" height="315" src="@Model.Video" allowfullscreen></iframe>
+    </div>
+    <h2 class="top-ajuste text-info">(@Model.Id)@Model.Nome</h2>
+    <div>
+        <img style="width:300px; height:250px;" src="@Model.Imagem">
+        <h6 class="text-success">Imagem ilustrativa do jogo @Model.Nome</h6>
+    </div>
+    <h3 class="top-ajuste text-info">Descrição do Jogo</h3>
+    <div class="descricao">
+        <h4 class="top-ajuste text-danger">CATEGORIA: @Model.Categoria.ToString()</h4>
+        <h4 class="text-danger top-ajuste">SELO: @Model.Selo.ToString().ToUpper()</h4>
+        <div> <p style="margin-top:50px;" class="text-danger h4">@Model.Descricao</p></div>
+    </div>
+</div>
+
